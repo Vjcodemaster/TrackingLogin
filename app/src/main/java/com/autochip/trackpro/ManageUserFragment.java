@@ -123,7 +123,7 @@ public class ManageUserFragment extends Fragment implements OnAdapterInteraction
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_manage_user, container, false);
 
-        mAdapterListener =this;
+        mAdapterListener = this;
         init(view);
         /*String build = android.os.Build.PRODUCT;
         String deviceName = android.os.Build.MODEL;
@@ -143,7 +143,7 @@ public class ManageUserFragment extends Fragment implements OnAdapterInteraction
             public void onClick(View view) {
                 String sID = etID.getText().toString().trim();
                 String sName = etName.getText().toString().trim();
-                if(isUserIDValid(sID) && isNameValid(sName)){
+                if (isUserIDValid(sID) && isNameValid(sName)) {
                     showProgressBar();
                     //new MyTask(ManageUserFragment.this, sID, sName).execute();
                     runThread(sID, sName);
@@ -170,7 +170,7 @@ public class ManageUserFragment extends Fragment implements OnAdapterInteraction
                 sharedPreferenceClass.setUserList(alID, alName, alFlag);*/
 
                 Set<String> setID = sharedPreferenceClass.getUserList();
-                if(setID!=null && setID.size()>0) {
+                if (setID != null && setID.size() > 0) {
                     Intent mapIntent = new Intent(getActivity(), MapsActivity.class);
                     getActivity().startActivity(mapIntent);
                 } else {
@@ -184,7 +184,7 @@ public class ManageUserFragment extends Fragment implements OnAdapterInteraction
         return view;
     }
 
-    private void init(View view){
+    private void init(View view) {
         circularProgressBar = new CircularProgressBar(getActivity());
 
         tvExpand = view.findViewById(R.id.tv_expand);
@@ -209,7 +209,7 @@ public class ManageUserFragment extends Fragment implements OnAdapterInteraction
             ArrayList<String> setAdminPermissionList = sharedPreferenceClass.getAdminPermissionList();
 
 
-            if(setID!=null && setID.size()>0) {
+            if (setID != null && setID.size() > 0) {
                 showProgressBar();
                 ArrayList<String> tmp = new ArrayList<>(setAdminPermissionList);
                 ArrayList<Integer> alFlag = new ArrayList<>(tmp.size());
@@ -222,7 +222,7 @@ public class ManageUserFragment extends Fragment implements OnAdapterInteraction
                 alAdminPermissionFlag.addAll(alFlag);
                 //alAdminPermissionFlag.addAll(setAdminPermissionList);
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -252,8 +252,8 @@ public class ManageUserFragment extends Fragment implements OnAdapterInteraction
         //stopProgressBar();
     }
 
-    private void handleExpandableLayout(){
-        if(expandableLayout.isExpanded()){
+    private void handleExpandableLayout() {
+        if (expandableLayout.isExpanded()) {
             expandableLayout.setVisibility(View.GONE);
             expandableLayout.collapse();
             tvExpand.setCompoundDrawablesWithIntrinsicBounds(R.drawable.circle_plus, 0, 0, 0);
@@ -285,7 +285,7 @@ public class ManageUserFragment extends Fragment implements OnAdapterInteraction
 
     @Override
     public void onAdapterChange(String TAG, int position) {
-        switch (TAG){
+        switch (TAG) {
             case "REMOVE_POSITION":
                 alID.remove(position);
                 alName.remove(position);
@@ -303,6 +303,13 @@ public class ManageUserFragment extends Fragment implements OnAdapterInteraction
                 stopProgressBar();
                 break;
         }
+    }
+
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        stopProgressBar();
     }
 
     /*static class MyTask extends AsyncTask<Void, Void, String> {
@@ -393,10 +400,10 @@ public class ManageUserFragment extends Fragment implements OnAdapterInteraction
                                     @Override
                                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                         boolean isPresent = dataSnapshot.hasChild(phone);
-                                        if(isPresent) {
+                                        if (isPresent) {
                                             //Get map of users in dataSnapshot
                                             boolean value = (Boolean) dataSnapshot.child(phone).child("adminPermission").getValue();
-                                            if(value){
+                                            if (value) {
                                                 adminPermissionFlag = 1;
                                             } else {
                                                 adminPermissionFlag = 2;
@@ -458,7 +465,7 @@ public class ManageUserFragment extends Fragment implements OnAdapterInteraction
         }.start();
     }
 
-    private void notifyRecycler(String phone, String name){
+    private void notifyRecycler(String phone, String name) {
         alAdminPermissionFlag.add(adminPermissionFlag);
         alID.add(phone);
         alName.add(name);
