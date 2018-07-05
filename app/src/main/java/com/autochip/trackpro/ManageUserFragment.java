@@ -111,6 +111,7 @@ public class ManageUserFragment extends Fragment implements OnAdapterInteraction
         }
         sharedPreferenceClass = new SharedPreferenceClass(getActivity());
         ref = FirebaseDatabase.getInstance().getReference();
+        circularProgressBar = new CircularProgressBar(getActivity());
         //Intent bi = new Intent(getActivity(), TrackingService.class);
         //bi.setPackage(StaticReferenceClass.ServiceIntent);
         //getActivity().startService(bi);
@@ -185,7 +186,7 @@ public class ManageUserFragment extends Fragment implements OnAdapterInteraction
     }
 
     private void init(View view) {
-        circularProgressBar = new CircularProgressBar(getActivity());
+
 
         tvExpand = view.findViewById(R.id.tv_expand);
         expandableLayout = view.findViewById(R.id.expandable_layout);

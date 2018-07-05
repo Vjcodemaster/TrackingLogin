@@ -165,7 +165,7 @@ public class VolleyTask {
         }*/
 
         StringRequest request = new StringRequest(
-                Request.Method.GET, StaticReferenceClass.getDistanceWithDirection(sDestination, sOrigin), //BASE_URL + Endpoint.USER
+                Request.Method.GET, StaticReferenceClass.getDistanceMatrix(sDestination, sOrigin), //getDistanceWithDirection
                 new Response.Listener<String>() {
 
                     @Override
@@ -210,10 +210,27 @@ public class VolleyTask {
                 JSONObject jsonResponse, jsonExtract;
                 JSONArray jsonArray;
                 JSONArray jsonArrayLegs;
-                try {
+                //Distance with direction api
+                /*try {
                     jsonResponse = new JSONObject(response);
                     jsonArray = jsonResponse.getJSONArray("routes");
                     jsonArrayLegs = jsonArray.getJSONObject(0).getJSONArray("legs");
+                    jsonExtract = jsonArrayLegs.getJSONObject(0).getJSONObject("distance");
+                    String sDistance = jsonExtract.getString("text");
+                    //String sLongStart = jsonExtract.getString("lng");
+                    jsonExtract = jsonArrayLegs.getJSONObject(0).getJSONObject("duration");
+                    String sTime = jsonExtract.getString("text");
+                    //String sLongEnd = jsonExtract.getString("lng");
+                    asyncInterface.onDistanceReceived("UPDATE_DISTANCE", 2, sDistance, sTime, sPhone);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }*/
+
+                //using DistanceMatrix API
+                try {
+                    jsonResponse = new JSONObject(response);
+                    jsonArray = jsonResponse.getJSONArray("rows");
+                    jsonArrayLegs = jsonArray.getJSONObject(0).getJSONArray("elements");
                     jsonExtract = jsonArrayLegs.getJSONObject(0).getJSONObject("distance");
                     String sDistance = jsonExtract.getString("text");
                     //String sLongStart = jsonExtract.getString("lng");

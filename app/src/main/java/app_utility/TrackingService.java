@@ -319,11 +319,24 @@ public class TrackingService extends Service implements LocationListener, Google
             VolleyTask volleyTask = new VolleyTask(getApplicationContext(), "SNAP_TO_ROAD", sLatLng);
             previousLocation = bestLocation;
             startTime = System.currentTimeMillis();
-
-        } else if (bestLocation != null && checkTheDistance(bestLocation, previousLocation) && VOLLEY_STATUS.equals("NOT_RUNNING")) {
+        } /*else if (bestLocation != null && checkTheDistance(bestLocation, previousLocation) && VOLLEY_STATUS.equals("NOT_RUNNING")) {
             endTime = System.currentTimeMillis();
             totalTime = (endTime - startTime) / 1000;
             System.out.println(totalTime + "TOTAL TIME TAKEN");
+            //onLocationChanged(bestLocation);
+            String sLatLng = bestLocation.getLatitude() + "," + bestLocation.getLongitude();
+            VolleyTask volleyTask = new VolleyTask(getApplicationContext(), "SNAP_TO_ROAD", sLatLng);
+            previousLocation = bestLocation;
+            *//*endTime = System.currentTimeMillis();
+            totalTime = (endTime - startTime) / 1000;
+            System.out.println(totalTime + "TOTAL TIME TAKEN");*//*
+            startTime = System.currentTimeMillis();
+        }*/
+
+        else if (bestLocation != null && checkTheDistance(bestLocation, previousLocation) && VOLLEY_STATUS.equals("NOT_RUNNING")) {
+            endTime = System.currentTimeMillis();
+            totalTime = (endTime - startTime) / 1000;
+            //System.out.println(totalTime + "TOTAL TIME TAKEN");
             //onLocationChanged(bestLocation);
             String sLatLng = bestLocation.getLatitude() + "," + bestLocation.getLongitude();
             VolleyTask volleyTask = new VolleyTask(getApplicationContext(), "SNAP_TO_ROAD", sLatLng);
@@ -333,12 +346,6 @@ public class TrackingService extends Service implements LocationListener, Google
             System.out.println(totalTime + "TOTAL TIME TAKEN");*/
             startTime = System.currentTimeMillis();
         }
-
-        /*LocationRequest locationRequest = LocationRequest.create();
-        locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
-        locationRequest.setInterval(20000);*/
-        /*String sLatLng = location.getLatitude() + "," + location.getLongitude();
-        VolleyTask volleyTask = new VolleyTask(getApplicationContext(), "SNAP_TO_ROAD", sLatLng);*/
     }
 
     @Override
@@ -390,10 +397,6 @@ public class TrackingService extends Service implements LocationListener, Google
                     bestLocation = location;
                     locationManager.requestLocationUpdates(provider, 0, 60, this);
                 }
-                //latitude = location.getLatitude();
-                //longitude = location.getLongitude();
-                //addr = ConvertPointToLocation(latitude, longitude);
-                //String temp_c = SendToUrl(addr);
             }
 
 
@@ -410,27 +413,6 @@ public class TrackingService extends Service implements LocationListener, Google
             previousLocation = bestLocation;
         }*/
     }
-
-    /*private void getLocation(){
-        locationManager = (LocationManager) getApplicationContext().getSystemService(LOCATION_SERVICE);
-
-        List<String> providers = locationManager.getProviders(true);
-
-        for (String provider : providers) {
-            try {
-                Location location = locationManager.getLastKnownLocation(provider);
-                if (location != null) {
-                    double accuracy = location.getAccuracy();
-                    onLocationChanged(location);
-                    //longitude = location.getLongitude();
-                    //latitude = location.getLatitude();
-                }
-                locationManager.requestLocationUpdates(provider, 1000 * 20, 0, this);
-            } catch (SecurityException e) {
-                e.printStackTrace();
-            }
-        }
-    }*/
 
     /*public void getLocation() {
         LocationRequest locationRequest = LocationRequest.create();
@@ -491,12 +473,8 @@ public class TrackingService extends Service implements LocationListener, Google
         return b;
     }*/
 
-    /*
-    logic written by Vijay on 02-07-2018.
-    this checks for gps bug, where in case if gps is not stable enough or might show wrong location, this reduces the margin of error where
-    a marker can be at certain time and the distance it has travelled.
-     */
-    private Boolean checkTheDistance(Location location, Location previousLocation) {
+
+    /*private Boolean checkTheDistance(Location location, Location previousLocation) {
         float distance = location.distanceTo(previousLocation);
         boolean b;
         if (distance >= 150.0 || distance<=65) {
@@ -517,8 +495,25 @@ public class TrackingService extends Service implements LocationListener, Google
         }
         b = !VOLLEY_STATUS.equals("RUNNING");
         return b;
-    }
+    }*/
 
+    /*
+   logic written by Vijay on 02-07-2018.
+   this checks for gps bug, where in case if gps is not stable enough or might show wrong location, this reduces the margin of error where
+   a marker can be at certain time and the distance it has travelled.
+    */
+    private Boolean checkTheDistance(Location location, Location previousLocation) {
+        float distance = location.distanceTo(previousLocation);
+        boolean b;
+        if (distance >= 60.0) {
+            VolleyTask volleyTask = new VolleyTask(getApplicationContext(), "GET_DISTANCE", String.valueOf(location.getLatitude())
+                    + "," + String.valueOf(location.getLongitude()), String.valueOf(previousLocation.getLatitude()) + "," +
+                    String.valueOf(previousLocation.getLongitude()), asyncInterface, "");
+            VOLLEY_STATUS = "RUNNING";
+        }
+        b = !VOLLEY_STATUS.equals("RUNNING");
+        return b;
+    }
     @Override
     public void onResultReceived(String sMessage, int nCase, String sResult) {
 
@@ -535,12 +530,20 @@ public class TrackingService extends Service implements LocationListener, Google
             case "UPDATE_DISTANCE":
                 String[] distanceArray = sDistance.split(" ");
                 Double distance = Double.valueOf(distanceArray[0]);
-                hasNoGpsBug = !(distance >= .5);
-                if(hasNoGpsBug){
+                endTime = System.currentTimeMillis();
+                totalTime = (endTime - startTime) / 1000;
+                // speed = distance / time
+                double speedInMetersPerSecond = (distance*1000 / totalTime);
+
+                float speed = (float) (speedInMetersPerSecond * 3.6);
+                if (speed <= 78.0) {
                     String sLatLng = bestLocation.getLatitude() + "," + bestLocation.getLongitude();
                     VolleyTask volleyTask = new VolleyTask(getApplicationContext(), "SNAP_TO_ROAD", sLatLng);
                     previousLocation = bestLocation;
+                    endTime = 0;
+                    startTime = System.currentTimeMillis();
                 }
+                //hasNoGpsBug = !(distance >= .5);
                 VOLLEY_STATUS = "NOT_RUNNING";
                 break;
         }

@@ -7,11 +7,15 @@ public class StaticReferenceClass {
     public static String SNAP_TO_ROAD_PARAMS = "&interpolate=true&key=";
     public static String ROUTES_API_KEY = "AIzaSyCAigqCiSh3eI07JpdAJ30Pj6hMYzwZC84";
 
-    public static String DISTANCE_ON_ROAD = "http://maps.googleapis.com/maps/api/distancematrix/json?origins=54.406505,18.67708&destinations=54.446251,18.570993&mode=driving&language=en-EN&sensor=false";
+    public static String DISTANCE_ON_ROAD = "http://maps.googleapis.com/maps/api/distancematrix/json?origins=";
+
+    public static String DISTANCE_MATRIX_PARAMS = "&mode=driving&language=en-EN&sensor=false";
 
     public static String DISTANCE_WITH_DIRECTION ="http://maps.google.com/maps/api/directions/json?origin="; //52.0,0&destination=52.0,0
 
     public static String DESTINATION = "&destination=";
+
+    public static String DESTINATIONS = "&destinations=";
 
 
     public static String DISTANCE_WITH_DIRECTION_PARAMS = "&mode=driving&sensor=true";
@@ -21,7 +25,7 @@ public class StaticReferenceClass {
     }
 
     public static String getDistanceMatrix(String sOrigin, String sDestination) {
-        return DISTANCE_ON_ROAD;
+        return DISTANCE_ON_ROAD + sOrigin + DESTINATIONS + sDestination + DISTANCE_MATRIX_PARAMS;
     }
 
     public static String getDistanceWithDirection(String sOrigin, String sDestination) {

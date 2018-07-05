@@ -43,7 +43,7 @@ public class MarkerAnimation {
     Runnable runnable;
     LatLng updatePath;
     long animationDuration;
-    Double radius = 20.0;
+    Double radius = 10.0;
     boolean isFocusedOnMarker;
 
 
@@ -51,6 +51,7 @@ public class MarkerAnimation {
     private LatLngInterpolator _latLngInterpolator = new LatLngInterpolator.Spherical();
 
     public void animateLine(ArrayList<LatLng> Trips, GoogleMap map, Marker marker, Context current, boolean isFocusedOnMarker) {
+        _trips = new ArrayList<>();
         _trips.addAll(Trips);
         _marker = marker;
         context = current;
@@ -79,9 +80,9 @@ public class MarkerAnimation {
                 if (previousLocation != null) {
                     bearing = previousLocation.bearingTo(location);
                     if(!checkTheDistance(location, previousLocation)){
-                        animationDuration = 2300;
+                        animationDuration = 900;
                     } else {
-                        animationDuration = 1200;
+                        animationDuration = 1700;
                     }
                 }
 
