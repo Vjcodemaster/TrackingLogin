@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "433606080480",
+    "firebase_url": "https://trackpro-206404.firebaseio.com",
+    "project_id": "trackpro-206404",
+    "storage_bucket": "trackpro-206404.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:433606080480:android:c3b704cb30de8dae",
+        "android_client_info": {
+          "package_name": "com.autochip.trackpro"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "433606080480-ro844j35u8jkm7j87cugfdkk8hio8bc6.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "433606080480-ro844j35u8jkm7j87cugfdkk8hio8bc6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCHeolhjqJQL9PXXra032OY2034eJVczHI"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

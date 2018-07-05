@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:top="0dp" android:left="0dp" android:bottom="0dp" android:right="0dp">
+        <shape
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:shape="oval" >
+            <solid
+                android:color="@color/colorAccent" />
+
+            <size
+                android:width="30dp"
+                android:height="30dp"/>
+        </shape>
+    </item>
+    <item android:top="3dp" android:left="3dp" android:bottom="3dp" android:right="3dp"
+        android:drawable="@drawable/add_user_minus"/>
+</layer-list>

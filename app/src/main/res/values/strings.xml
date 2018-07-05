@@ -1,0 +1,49 @@
+<resources>
+    <string name="app_name">AC Trackpro</string>
+    <string name="app_name_o">Track Pro</string>
+
+    <!-- Strings related to login -->
+    <string name="prompt_name">Name</string>
+    <string name="prompt_id">Phone number</string>
+    <string name="prompt_password">Password (optional)</string>
+    <string name="action_login">Login</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="error_invalid_email">This email address is invalid</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email
+        completions."
+    </string>
+    <string name="title_activity_settings">Settings</string>
+
+    <!-- Strings related to Settings -->
+
+    <string name="enable_notification_tracking">Enable tracking and notifications</string>
+    <string name="recommended">Recommended. Help people to track you</string>
+
+    <string name="choose_display_name">Display Name</string>
+    <string name="enter_name">Please enter your name</string>
+
+    <!-- Strings related to ManageUserFragment Who do you want to track?-->
+    <string name="add_user">Add user</string>
+    <string name="add">Add</string>
+    <string name="remove">Remove</string>
+    <string name="track">Track</string>
+    <string name="whom_to_track">Who do you want to track?</string>
+    <string name="manage_users">Manage users</string>
+
+    <!-- Strings related to TrackersFragment -->
+    <string name="you_are_tracked">You\'re been tracked by :</string>
+    <string name="none">none for now</string>
+
+
+    <string name="service">TrackingService</string>
+    <string name="title_activity_maps">Track</string>
+
+    <!-- Strings related to Circular Progress bar -->
+    <string name="please_wait">Please wait&#8230;</string>
+
+    <string name="auto_start_explanation">Auto start permission is required for this app to run in background, would you like to give the access?</string>
+
+</resources>
