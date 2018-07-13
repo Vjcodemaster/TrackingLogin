@@ -44,8 +44,6 @@ import static android.support.v4.app.NotificationCompat.PRIORITY_MAX;
 
 public class TrackingService extends Service implements LocationListener, GoogleApiClient.ConnectionCallbacks, AsyncInterface {
 
-    public static final String ServiceIntent = "app_utility.TrackingService"; //this will be used to stop service
-
     String channelId = "app_utility.TrackingService";
     String channelName = "tracking";
 
@@ -62,7 +60,6 @@ public class TrackingService extends Service implements LocationListener, Google
 
     AsyncInterface asyncInterface;
 
-    private Location location;
     private LocationManager locationManager;
     Timer timer = new Timer();
     Handler handler = new Handler();
@@ -70,9 +67,9 @@ public class TrackingService extends Service implements LocationListener, Google
 
     Location previousLocation;
 
-    Double radius = 60.0;
+    //Double radius = 60.0;
 
-    boolean hasNoGpsBug = true;
+    //boolean hasNoGpsBug = true;
     String VOLLEY_STATUS = "NOT_RUNNING";
 
     long startTime = 0;
@@ -147,7 +144,6 @@ public class TrackingService extends Service implements LocationListener, Google
         notifyMgr.createNotificationChannel(chan);
         return channelId;
     }
-
 
 
     @Override
@@ -243,7 +239,7 @@ public class TrackingService extends Service implements LocationListener, Google
                 .setSmallIcon(R.drawable.download)
                 .setDefaults(Notification.DEFAULT_ALL)
                 .setContentTitle(getString(R.string.app_name))
-                //.setContentText("Admin has asked permission to track you. Would you like to accept?")
+                .setContentText("Admin has asked permission to track you. Would you like to accept?")
                 .setSubText("Admin has asked permission to track you. Would you like to accept?")
                 .addAction(R.drawable.download, "Accept", acceptPI)
                 .addAction(R.drawable.download, "Decline", declinePI)
@@ -472,7 +468,6 @@ public class TrackingService extends Service implements LocationListener, Google
         }
         return b;
     }*/
-
 
     /*private Boolean checkTheDistance(Location location, Location previousLocation) {
         float distance = location.distanceTo(previousLocation);
