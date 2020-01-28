@@ -3,12 +3,6 @@ package com.autochip.trackpro;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v4.app.Fragment;
-import android.support.v7.widget.DividerItemDecoration;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +12,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -30,6 +25,11 @@ import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Set;
 
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import app_utility.CircularProgressBar;
 import app_utility.OnAdapterInteractionListener;
 import app_utility.OnFragmentInteractionListener;
@@ -195,7 +195,7 @@ public class ManageUserFragment extends Fragment implements OnAdapterInteraction
 
         recyclerView = view.findViewById(R.id.rv_tracking_list);
         LinearLayoutManager mLinearLayoutManager = new LinearLayoutManager(getActivity());
-        mLinearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        mLinearLayoutManager.setOrientation(RecyclerView.VERTICAL);
         recyclerView.setLayoutManager(mLinearLayoutManager);
         recyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));
         recyclerView.setHasFixedSize(true);

@@ -17,11 +17,11 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.annotation.RequiresApi;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.NotificationCompat;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
+import androidx.core.app.ActivityCompat;
+import androidx.core.app.NotificationCompat;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -40,7 +40,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import static android.content.ContentValues.TAG;
-import static android.support.v4.app.NotificationCompat.PRIORITY_MAX;
+import static androidx.core.app.NotificationCompat.PRIORITY_MAX;
 
 public class TrackingService extends Service implements LocationListener, GoogleApiClient.ConnectionCallbacks, AsyncInterface {
 

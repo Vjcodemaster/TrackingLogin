@@ -2,16 +2,16 @@ package com.autochip.trackpro;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v7.widget.DividerItemDecoration;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.ArrayList;
 
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import app_utility.OnFragmentInteractionListener;
 
 
@@ -87,7 +87,7 @@ public class TrackersFragment extends Fragment {
     private void init(View view){
         recyclerView = view.findViewById(R.id.rv_trackers_list);
         LinearLayoutManager mLinearLayoutManager = new LinearLayoutManager(getActivity());
-        mLinearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        mLinearLayoutManager.setOrientation(RecyclerView.VERTICAL);
         recyclerView.setLayoutManager(mLinearLayoutManager);
         recyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));
         recyclerView.setHasFixedSize(true);

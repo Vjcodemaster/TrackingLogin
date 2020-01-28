@@ -6,15 +6,15 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.RequiresApi;
-import android.support.v4.app.ActivityCompat;
-import android.support.v7.app.AppCompatActivity;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -24,12 +24,13 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import androidx.core.app.ActivityCompat;
+
 import app_utility.CircularProgressBar;
 import app_utility.PermissionHandler;
 import app_utility.SharedPreferenceClass;
 import app_utility.User;
 
-import static app_utility.PermissionHandler.LOCATION_PERMISSION;
 import static app_utility.PermissionHandler.WRITE_PERMISSION;
 
 /**
@@ -218,7 +219,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     @Override
-    public void onStart(){
+    public void onStart() {
         super.onStart();
         if (!PermissionHandler.hasPermissions(LoginActivity.this, WRITE_PERMISSION)) {
             ActivityCompat.requestPermissions(LoginActivity.this, WRITE_PERMISSION, 1);
@@ -229,7 +230,7 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     public void onRequestPermissionsResult(int PERMISSION_ALL, String permissions[], int[] grantResults) {
         StringBuilder sMSG = new StringBuilder();
-        if(PERMISSION_ALL==1) {
+        if (PERMISSION_ALL == 1) {
             for (String sPermission : permissions) {
                 switch (sPermission) {
                     case Manifest.permission.WRITE_EXTERNAL_STORAGE:
@@ -264,9 +265,10 @@ public class LoginActivity extends AppCompatActivity {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         switch (requestCode) {
-            case 3:if (resultCode != Activity.RESULT_OK) {
-                LoginActivity.this.finish();
-            }
+            case 3:
+                if (resultCode != Activity.RESULT_OK) {
+                    LoginActivity.this.finish();
+                }
                 break;
         }
     }

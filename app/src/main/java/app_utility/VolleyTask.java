@@ -1,15 +1,12 @@
 package app_utility;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.widget.Toast;
+import androidx.annotation.NonNull;
 
 import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.RequestFuture;
 import com.android.volley.toolbox.StringRequest;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -19,7 +16,6 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.HashMap;
-import java.util.concurrent.ExecutionException;
 
 import static app_utility.TrackingService.ref;
 
